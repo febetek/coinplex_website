@@ -1,10 +1,271 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinplex & Tom Zgórniakiewicz - Wizjonerzy Przyszłości</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. ZMIENNE I RESET (MODERN CSS) --- */
+        :root {
+            --bg-dark: #0a0e17;
+            --primary-blue: #2563eb;
+            --accent-cyan: #06b6d4;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient-main: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. TŁO I EFEKTY --- */
+        .background-glow {
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--primary-blue);
+            filter: blur(150px);
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 10s infinite alternate;
+        }
+
+            .background-glow:nth-child(2) {
+                top: auto;
+                bottom: -20%;
+                left: auto;
+                right: -10%;
+                background: var(--accent-cyan);
+                animation-delay: -5s;
+            }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(30px, 50px);
+            }
+        }
+
+        /* --- 3. KOMPONENTY --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            /* To dodajemy do istniejącej klasy btn */
+            display: inline-flex; /* Zmienia na flexbox, żeby wyrównać ikonę */
+            align-items: center; /* Centruje w pionie */
+            gap: 10px; /* Odstęp między ikoną a tekstem */
+            /* Reszta Twoich starych stylów zostaje bez zmian: */
+            padding: 12px 30px;
+            background: var(--gradient-main);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
+            border: 1px solid transparent; /* Ważne dla wariantu download */
+        }
+
+        /* Specjalny styl dla przycisku pobierania (opcjonalnie inny kolor) */
+        .btn-download {
+            background: rgba(6, 182, 212, 0.1); /* Przezroczyste tło */
+            border-color: var(--accent-cyan); /* Obramowanie cyjan */
+            color: var(--accent-cyan);
+            backdrop-filter: blur(5px);
+        }
+
+            .btn-download:hover {
+                background: var(--accent-cyan);
+                color: #000; /* Ciemny tekst dla kontrastu po najechaniu */
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+                transform: translateY(-3px);
+            }
+
+        /* Kontener, żeby wyśrodkować przycisk, jeśli jest sam */
+        .download-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 30px -10px rgba(6, 182, 212, 0.6);
+            }
+
+        /* --- 4. SEKCJA HERO --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- 5. GLASSMORPHISM CARDS --- */
+        .section-leader {
+            padding: 100px 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+            .glass-card:hover {
+                transform: translateY(-10px);
+                border-color: var(--primary-blue);
+            }
+
+            .glass-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+                color: var(--accent-cyan);
+            }
+
+        .leader-highlight {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+            .leader-highlight h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+
+            .leader-highlight span {
+                color: var(--primary-blue);
+                text-decoration: underline;
+                text-decoration-color: var(--accent-cyan);
+                text-underline-offset: 8px;
+            }
+
+        /* --- 6. FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSYWNOŚĆ --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-leader {
+                padding: 50px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Witaj rajca pizda</h1>
+
+    <div class="background-glow"></div>
+    <div class="background-glow"></div>
+
+    <header>
+        <div class="container hero-content">
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; color: var(--accent-cyan);">Innowacja w każdym calu</p>
+            <h1>COINPLEX</h1>
+            <p>Platforma, która redefiniuje zasady gry. Nowoczesne technologie, bezpieczeństwo i wizja, która wyprzedza rynek.</p>
+            <a href="#" class="btn">Dołącz do Przyszłości</a>
+        </div>
+    </header>
+
+    <section class="section-leader container">
+        <div class="leader-highlight">
+            <h2>Wizjoner za sterami</h2>
+            <p class="leader-desc">Sukces Coinplex to wynik determinacji i unikalnej strategii, którą stworzył:</p>
+            <h2 style="margin-top: 10px;"><span>Tom Zgórniakiewicz</span></h2>
+        </div>
+
+        <div class="card-grid">
+            <div class="glass-card">
+                <h3>Strategia</h3>
+                <p>Tom Zgórniakiewicz wdrożył rozwiązania, które łączą stabilność z dynamicznym rozwojem, stawiając Coinplex w czołówce innowacji.</p>
+            </div>
+            <div class="download-container">
+                <a href="assets/AGH survival 1.22.rar" download="Coinplex_Oferta_2024.pdf" class="btn btn-download">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Pobierz Whitepaper
+                </a>
+            </div>
+            <div class="glass-card">
+                <h3>Technologia</h3>
+                <p>Wykorzystanie najnowszych rozwiązań blockchain i web developmentu sprawia, że system jest niezawodny i szybki.</p>
+            </div>
+            <div class="glass-card">
+                <h3>Społeczność</h3>
+                <p>Budowanie silnej, zaangażowanej społeczności opartej na zaufaniu i transparentnych zasadach działania.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Coinplex Fan Page. Projekt stworzony przy użyciu Modern CSS.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
