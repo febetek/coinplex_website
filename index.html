@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinplex - Multi Theme</title>
+    <title>Coinplex - Ultimate Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         /* --- STYLE WSPÓLNE --- */
@@ -14,7 +14,7 @@
             transition: background 0.3s;
         }
 
-        /* Przycisk zmiany motywu (Zawsze widoczny) */
+        /* Przycisk zmiany motywu */
         #theme-toggle {
             position: fixed;
             top: 20px;
@@ -38,13 +38,12 @@
                 color: black;
             }
 
-        /* Klasa do ukrywania widoków */
         .hidden {
             display: none !important;
         }
 
         /* =========================================
-           MOTYW 1: MATRIX (Cyberpunk)
+           MOTYW 1: MATRIX
            ========================================= */
         body.mode-matrix {
             background-color: #000;
@@ -66,16 +65,6 @@
             min-height: 100vh;
         }
 
-        .matrix-header {
-            width: 100%;
-            padding: 20px 50px;
-            background-color: rgba(0, 20, 0, 0.8);
-            border-bottom: 1px solid #0F0;
-            display: flex;
-            justify-content: space-between;
-            box-sizing: border-box;
-        }
-
         .matrix-container {
             margin-top: 100px;
             padding: 40px;
@@ -95,7 +84,6 @@
             text-transform: uppercase;
             display: inline-block;
             margin-top: 20px;
-            transition: 0.3s;
         }
 
             .btn-matrix:hover {
@@ -105,7 +93,7 @@
             }
 
         /* =========================================
-           MOTYW 2: MEME (Śmieszny)
+           MOTYW 2: MEME
            ========================================= */
         body.mode-meme {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
@@ -119,16 +107,8 @@
         }
 
         @keyframes rainbow {
-            0% {
-                background-position: 0% 50%;
-            }
-
             50% {
                 background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
             }
         }
 
@@ -140,7 +120,6 @@
             text-align: center;
             box-shadow: 15px 15px 0px #000;
             max-width: 500px;
-            position: relative;
         }
 
         .btn-meme {
@@ -165,11 +144,11 @@
 
         @keyframes shake {
             0% {
-                transform: translate(1px, 1px) rotate(0deg);
+                transform: translate(1px, 1px);
             }
 
             100% {
-                transform: translate(1px, -2px) rotate(-1deg);
+                transform: translate(-1px, -2px);
             }
         }
 
@@ -182,11 +161,6 @@
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-
             100% {
                 transform: translateY(-100px) scale(1.5);
                 opacity: 0;
@@ -194,15 +168,13 @@
         }
 
         /* =========================================
-           MOTYW 3: MINECRAFT (Survival)
+           MOTYW 3: MINECRAFT
            ========================================= */
         body.mode-minecraft {
-            /* Generowanie tekstury ziemi w CSS */
             background-color: #4a331c;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
             background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            font-family: 'VT323', monospace; /* Pikselowa czcionka */
+            font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -219,41 +191,15 @@
             font-size: 80px;
             color: #d1d1d1;
             text-shadow: 4px 4px #3f3f3f;
-            margin-bottom: 10px;
-            margin-top: 0;
-            letter-spacing: 2px;
+            margin: 0;
         }
 
-        .mc-subtitle {
-            color: #FFFF55; /* Minecraft Yellow */
-            font-size: 30px;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px #3f3f3f;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(-10px);
-            }
-
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* Styl przycisku a'la Minecraft */
         .btn-mc {
             display: block;
             width: 80%;
-            margin: 0 auto 20px auto;
+            margin: 20px auto;
             background-color: #777;
             border: 2px solid #000;
-            /* Cieniowanie przycisku */
             border-top-color: #aaa;
             border-left-color: #aaa;
             border-right-color: #555;
@@ -268,60 +214,151 @@
         }
 
             .btn-mc:hover {
-                background-color: #5d6888; /* Niebieskawy podświetlony */
+                background-color: #5d6888;
                 border-top-color: #7e87a3;
                 border-left-color: #7e87a3;
             }
 
-            .btn-mc:active {
-                background-color: #444;
-                border-color: #222;
-            }
-
-        .mc-footer {
-            margin-top: 50px;
-            font-size: 20px;
-            color: #aaa;
+        /* =========================================
+           MOTYW 4: AGH USOS / DZIEKANAT
+           ========================================= */
+        body.mode-agh {
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .agh-header-bar {
+            width: 100%;
+            background-color: #00693c; /* AGH Green */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .agh-view {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .agh-card {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .agh-title {
+            font-size: 18px;
+            color: #00693c;
+            border-bottom: 2px solid #00693c;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .agh-info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .agh-alert {
+            background-color: #ffebe6;
+            color: #bf0e08;
+            padding: 10px;
+            border: 1px solid #ffbdad;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .btn-agh {
+            display: block;
+            width: 100%;
+            background-color: #00693c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+            .btn-agh:hover {
+                background-color: #004d2c;
+            }
     </style>
 </head>
 <body class="mode-matrix">
+
     <button id="theme-toggle" onclick="nextTheme()">🔄 Zmień Motyw</button>
 
     <canvas id="matrixCanvas"></canvas>
 
     <div id="view-matrix" class="matrix-view">
-        <div class="matrix-header">
-            <div class="logo">COINPLEX_TERMINAL</div>
-            <div>[SECURE]</div>
+        <div style="width:100%; padding:20px; display:flex; justify-content:space-between; color:#0F0; background:rgba(0,20,0,0.8);">
+            <div>COINPLEX_TERMINAL</div><div>[SECURE]</div>
         </div>
         <div class="matrix-container">
             <h1>AGH Survival 1.22</h1>
-            <p>> Inicjalizacja pobierania...</p>
+            <p>> Inicjalizacja...</p>
             <a href="AGH survival 1.22.rar" class="btn-matrix" download>[ POBIERZ DANE ]</a>
-            <br><br>
-            <small>STATUS: ONLINE</small>
         </div>
     </div>
 
     <div id="view-meme" class="meme-view hidden">
         <h1 style="font-size:50px; color:#ff00c8; text-shadow:2px 2px 0 #000; transform:rotate(-3deg)">COINPLEX</h1>
-        <div style="background:yellow; display:inline-block; padding:5px; transform:rotate(2deg)">
-            ✨ Much survival. Very rar. ✨
-        </div>
+        <div style="background:yellow; padding:5px; display:inline-block; transform:rotate(2deg)">✨ Very rar. Much survival. ✨</div>
         <p>🐕 WOW. Plik gotowy.</p>
         <a href="AGH survival 1.22.rar" class="btn-meme" download>👉 KLIKNIJ TU 👈</a>
     </div>
 
     <div id="view-minecraft" class="mc-view hidden">
         <h1 class="mc-title">MINECRAFT</h1>
-        <div class="mc-subtitle">AGH Survival Edition</div>
-
+        <div style="color:#FFFF55; font-size:30px; margin-bottom:40px; text-shadow:2px 2px #3f3f3f;">AGH Survival Edition</div>
         <a href="AGH survival 1.22.rar" class="btn-mc" download>Pobierz Świat</a>
-        <a href="#" class="btn-mc" onclick="alert('Opcje są zablokowane przez Administratora!')">Opcje...</a>
+        <div style="margin-top:50px; color:#aaa; font-size:20px;">Copyright Mojang AB.</div>
+    </div>
 
-        <div class="mc-footer">
-            Copyright Mojang AB. Do not distribute.
+    <div id="view-agh" class="agh-view hidden">
+        <div class="agh-header-bar">Wirtualny Dziekanat / System Obsługi Studenta</div>
+        <div style="padding: 20px;">
+            <div class="agh-card">
+                <div class="agh-title">Karta przedmiotu: SURVIVAL 1.22</div>
+
+                <div class="agh-info-row">
+                    <strong>Status studenta:</strong>
+                    <span style="color:green">Aktywny (Warunkowo)</span>
+                </div>
+                <div class="agh-info-row">
+                    <strong>Punkty ECTS:</strong>
+                    <span style="color:red">-12 (Deficyt)</span>
+                </div>
+                <div class="agh-info-row">
+                    <strong>Prowadzący:</strong>
+                    <span>mgr inż. Coinplex</span>
+                </div>
+
+                <div class="agh-alert">
+                    ⚠️ <strong>UWAGA:</strong> Termin pobrania pliku mija wczoraj. Proszę niezwłocznie uzupełnić braki w oprogramowaniu.
+                </div>
+
+                <a href="AGH survival 1.22.rar" class="btn-agh" download>Złóż wniosek o pobranie pliku (.RAR)</a>
+            </div>
+            <div style="text-align:center; margin-top:10px; font-size:12px; color:#777;">
+                System wygenerowany automatycznie. Dziekanat czynny: wtorek 11:00 - 11:15.
+            </div>
         </div>
     </div>
 
@@ -331,31 +368,32 @@
         const views = [
             document.getElementById('view-matrix'),
             document.getElementById('view-meme'),
-            document.getElementById('view-minecraft')
+            document.getElementById('view-minecraft'),
+            document.getElementById('view-agh')
         ];
         const canvas = document.getElementById('matrixCanvas');
 
-        // 0 = Matrix, 1 = Meme, 2 = Minecraft
-        let currentTheme = 0;
+        let currentTheme = 0; // 0=Matrix, 1=Meme, 2=Minecraft, 3=AGH
 
         function nextTheme() {
-            // Ukryj obecny widok
             views[currentTheme].classList.add('hidden');
-
-            // Zmień licznik (0 -> 1 -> 2 -> 0)
-            currentTheme = (currentTheme + 1) % 3;
-
-            // Pokaż nowy widok i ustaw klasę body
+            currentTheme = (currentTheme + 1) % 4; // Teraz modulo 4, bo 4 motywy
             views[currentTheme].classList.remove('hidden');
 
+            // Reset klas body
+            body.className = '';
+
             if (currentTheme === 0) {
-                body.className = 'mode-matrix';
+                body.classList.add('mode-matrix');
                 canvas.style.display = 'block';
             } else if (currentTheme === 1) {
-                body.className = 'mode-meme';
+                body.classList.add('mode-meme');
                 canvas.style.display = 'none';
             } else if (currentTheme === 2) {
-                body.className = 'mode-minecraft';
+                body.classList.add('mode-minecraft');
+                canvas.style.display = 'none';
+            } else if (currentTheme === 3) {
+                body.classList.add('mode-agh');
                 canvas.style.display = 'none';
             }
         }
@@ -364,13 +402,13 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const chars = '01AGH'; // Zmieniłem znaki na AGH dla klimatu
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawMatrix() {
-            if (currentTheme !== 0) return; // Optymalizacja
+            if (currentTheme !== 0) return;
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#0F0';
@@ -383,10 +421,7 @@
             }
         }
         setInterval(drawMatrix, 30);
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
         // --- MEME CLICK LOGIC ---
         document.addEventListener('click', function (e) {
