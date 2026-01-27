@@ -3,82 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinplex - Pobieranie</title>
+    <title>Coinplex - Secure Download</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace; /* Czcionka "hakerska" */
+            background-color: #000;
+            color: #0F0; /* Klasyczna zieleń */
+            overflow-x: hidden; /* Ukrywa paski przewijania */
+        }
+
+        /* Canvas dla efektu Matrix */
+        canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Tło pod treścią */
+        }
+
+        /* Kontener główny - musi być na wierzchu */
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            background-color: #1e1e1e;
+            background-color: rgba(0, 20, 0, 0.8); /* Półprzezroczyste tło */
+            border-bottom: 1px solid #0F0;
+            box-sizing: border-box;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #4CAF50;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #0F0;
         }
 
         nav a {
-            color: #fff;
+            color: #0F0;
             text-decoration: none;
             margin-left: 20px;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+            nav a:hover {
+                text-shadow: 0 0 10px #0F0;
+                text-decoration: underline;
+            }
 
         .hero {
             text-align: center;
-            padding: 100px 20px;
+            margin-top: 100px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0F0;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            backdrop-filter: blur(5px);
         }
 
         h1 {
             font-size: 48px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         p {
             font-size: 18px;
-            color: #b0b0b0;
-            margin-bottom: 40px;
+            color: #cfc;
+            margin-bottom: 30px;
         }
 
+        /* Nowa mechanika przycisku - Efekt Glitch/Pulsowania */
         .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 30px;
+            background-color: #000;
+            color: #0F0;
+            padding: 15px 40px;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid #0F0;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            display: inline-block;
             cursor: pointer;
-            border: none;
         }
 
             .btn:hover {
-                background-color: #45a049;
+                background-color: #0F0;
+                color: #000;
+                box-shadow: 0 0 30px #0F0;
+            }
+
+        .file-info {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .info-box {
+            border: 1px solid #0F0;
+            padding: 15px;
+            width: 150px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #0F0;
+        }
+
+            .info-box h3 {
+                font-size: 14px;
+                margin-bottom: 5px;
+                color: #fff;
             }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">COINPLEX</div>
-        <nav>
-            <a href="#">Strona główna</a>
-        </nav>
-    </header>
+    <canvas id="matrixCanvas"></canvas>
 
-    <section class="hero">
-        <h1>AGH Survival 1.22</h1>
+    <div class="container">
+        <header>
+            <div class="logo">COINPLEX_TERMINAL</div>
+            <nav>
+                <a href="#">[HOME]</a>
+            </nav>
+        </header>
 
-        <a href="assets/AGH survival 1.22.rar" class="btn" download>Pobierz plik .rar</a>
-    </section>
+        <section class="hero">
+            <h1>AGH Survival 1.22</h1>
+            <p>> Oczekiwanie na pobranie pliku...</p>
+
+            <a href="AGH survival 1.22.rar" class="btn" download>
+                [ POBIERZ DANE ]
+            </a>
+        </section>
+
+        <section class="file-info">
+            <div class="info-box">
+                <h3>WERSJA</h3>
+                <p>1.22.0</p>
+            </div>
+            <div class="info-box">
+                <h3>ROZMIAR</h3>
+                <p>UKRYTY</p>
+            </div>
+            <div class="info-box">
+                <h3>STATUS</h3>
+                <p>ONLINE</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Ustawienie canvas na pełny ekran
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Znaki, które będą spadać (Katakana + Alfabet)
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize; // Liczba kolumn
+
+        // Tablica przechowująca pozycję Y dla każdej kolumny
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        // Główna funkcja rysująca
+        const draw = () => {
+            // Półprzezroczyste czarne tło, aby stworzyć efekt smugi (zanikania)
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0'; // Zielony kolor tekstu
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                // Losowy znak
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+
+                // Rysowanie znaku
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Resetowanie kropli na górę ekranu losowo, jeśli wyjdzie poza ekran
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                // Przesuwanie kropli w dół
+                drops[i]++;
+            }
+        };
+
+        // Uruchomienie animacji (30 klatek na sekundę)
+        setInterval(draw, 30);
+
+        // Dopasowanie rozmiaru przy zmianie okna
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 
 </body>
 </html>
