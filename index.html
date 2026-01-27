@@ -3,26 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinplex: WOW Edition</title>
+    <title>Coinplex - Multi Theme</title>
     <style>
-        /* --- STYL DLA BEKI (Comic Sans + Tęcza) --- */
+        /* --- STYLE WSPÓLNE --- */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* Król czcionek */
-            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-            background-size: 400%;
-            animation: rainbow 10s linear infinite; /* Animacja tła */
-            color: #333;
-            overflow: hidden; /* Żeby emotki nie robiły pasków przewijania */
-            height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.5s;
+        }
+
+        /* Przycisk zmiany motywu (Zawsze widoczny) */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid white;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 20px;
+            font-family: sans-serif;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+            #theme-toggle:hover {
+                background-color: white;
+                color: black;
+            }
+
+        /* Ukrywanie widoków */
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- MOTYW 1: MATRIX (Cyberpunk) --- */
+        body.matrix-mode {
+            background-color: #000;
+            font-family: 'Courier New', Courier, monospace;
+            color: #0F0;
+        }
+
+        canvas#matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .matrix-view {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            min-height: 100vh;
         }
 
-        /* --- Animacja Tęczy --- */
+        .matrix-header {
+            width: 100%;
+            padding: 20px 50px;
+            background-color: rgba(0, 20, 0, 0.8);
+            border-bottom: 1px solid #0F0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .matrix-container {
+            margin-top: 100px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #0F0;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            text-align: center;
+        }
+
+        .btn-matrix {
+            background-color: #000;
+            color: #0F0;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #0F0;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+            .btn-matrix:hover {
+                background-color: #0F0;
+                color: #000;
+                box-shadow: 0 0 30px #0F0;
+            }
+
+        /* --- MOTYW 2: MEME (Śmieszny) --- */
+        body.meme-mode {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            animation: rainbow 10s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
         @keyframes rainbow {
             0% {
                 background-position: 0% 50%;
@@ -37,43 +125,25 @@
             }
         }
 
-        /* --- Główny kontener (Biała kartka) --- */
-        .container {
+        .meme-view {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 30px;
             border: 5px dashed #000;
             text-align: center;
-            box-shadow: 15px 15px 0px #000; /* Gruby cień */
+            box-shadow: 15px 15px 0px #000;
             max-width: 500px;
-            z-index: 10;
             position: relative;
         }
 
-        h1 {
+        .meme-title {
             font-size: 50px;
-            margin: 0;
             color: #ff00c8;
             text-shadow: 2px 2px 0px #000;
-            transform: rotate(-3deg); /* Krzywy tekst jest śmieszniejszy */
+            transform: rotate(-3deg);
         }
 
-        .subtitle {
-            font-size: 20px;
-            background-color: yellow;
-            display: inline-block;
-            padding: 5px;
-            margin-bottom: 20px;
-            transform: rotate(2deg);
-        }
-
-        p {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* --- Szalony Przycisk --- */
-        .btn {
+        .btn-meme {
             display: inline-block;
             background-color: #00ff00;
             color: #000;
@@ -84,13 +154,10 @@
             border-radius: 50px;
             font-weight: bold;
             margin-top: 20px;
-            cursor: pointer;
-            transition: transform 0.1s;
             box-shadow: 5px 5px 0px #000;
         }
 
-            /* Przycisk trzęsie się po najechaniu */
-            .btn:hover {
+            .btn-meme:hover {
                 animation: shake 0.5s infinite;
                 background-color: #ff00ff;
                 color: white;
@@ -142,18 +209,13 @@
             }
         }
 
-        .stats {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        /* --- Styl dla latających emotek --- */
+        /* Latające emotki */
         .emoji {
             position: absolute;
             font-size: 30px;
-            pointer-events: none; /* Żeby nie przeszkadzały w klikaniu */
+            pointer-events: none;
             animation: floatUp 1s ease-out forwards;
+            z-index: 9999;
         }
 
         @keyframes floatUp {
@@ -169,58 +231,119 @@
         }
     </style>
 </head>
-<body>
+<body class="matrix-mode">
+    <button id="theme-toggle" onclick="switchTheme()">🔄 Zmień Motyw</button>
 
-    <div class="container">
-        <h1>COINPLEX</h1>
-        <div class="subtitle">✨ Much survival. Very rar. ✨</div>
+    <canvas id="matrixCanvas"></canvas>
 
-        <p>
-            🐕 WOW <br>
-            Plik AGH Survival 1.22 gotowy.<br>
-            Bez wirusów (chyba).
-        </p>
+    <div id="view-matrix" class="matrix-view">
+        <div class="matrix-header">
+            <div class="logo">COINPLEX_TERMINAL</div>
+            <div>[SECURE_CONNECTION]</div>
+        </div>
+        <div class="matrix-container">
+            <h1>AGH Survival 1.22</h1>
+            <p>> Inicjalizacja pobierania...</p>
+            <a href="AGH survival 1.22.rar" class="btn-matrix" download>[ POBIERZ DANE ]</a>
+            <br><br>
+            <small>STATUS: ONLINE | PING: 4ms</small>
+        </div>
+    </div>
 
-        <a href="AGH survival 1.22.rar" class="btn" download>
-            👉 KLIKNIJ TU 👈
-        </a>
+    <div id="view-meme" class="meme-view hidden">
+        <h1 class="meme-title">COINPLEX</h1>
+        <div style="background:yellow; display:inline-block; padding:5px; transform:rotate(2deg)">
+            ✨ Much survival. Very rar. ✨
+        </div>
+        <p>🐕 WOW. Plik gotowy.</p>
 
-        <div class="stats">
-            Status: 😎 LEGITNY<br>
-            Format: 📦 .RAR<br>
-            Cena: 💸 0.00 PLN
+        <a href="AGH survival 1.22.rar" class="btn-meme" download>👉 KLIKNIJ TU 👈</a>
+
+        <div style="margin-top:20px; font-size:12px;">
+            Format: .RAR (No virus)<br>
+            Status: 😎 LEGITNY
         </div>
     </div>
 
     <script>
-        document.addEventListener('click', function (e) {
-            // Lista śmiesznych emotek
-            const emojis = ['🐕', '🚀', '💎', '🗿', '🔥', '💀', '🤡', '🚽', '🍌'];
+        // --- LOGIKA PRZEŁĄCZANIA ---
+        const body = document.body;
+        const viewMatrix = document.getElementById('view-matrix');
+        const viewMeme = document.getElementById('view-meme');
+        const canvas = document.getElementById('matrixCanvas');
 
-            // Stwórz 5 emotek przy każdym kliknięciu
+        let isMatrix = true;
+
+        function switchTheme() {
+            isMatrix = !isMatrix;
+
+            if (isMatrix) {
+                // Włącz Matrix
+                body.className = 'matrix-mode';
+                viewMatrix.classList.remove('hidden');
+                viewMeme.classList.add('hidden');
+                canvas.style.display = 'block';
+            } else {
+                // Włącz Memy
+                body.className = 'meme-mode';
+                viewMatrix.classList.add('hidden');
+                viewMeme.classList.remove('hidden');
+                canvas.style.display = 'none';
+            }
+        }
+
+        // --- LOGIKA MATRIXA ---
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            if (!isMatrix) return; // Nie rysuj jeśli motyw wyłączony (oszczędza baterię)
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // --- LOGIKA KLIKANIA (MEME) ---
+        document.addEventListener('click', function (e) {
+            // Działa tylko w trybie MEME i jeśli nie kliknięto w przycisk zmiany
+            if (isMatrix || e.target.id === 'theme-toggle') return;
+
+            const emojis = ['🐕', '🚀', '💎', '🔥', '💀', '🤡', '🍌'];
             for (let i = 0; i < 5; i++) {
                 const el = document.createElement('div');
                 el.classList.add('emoji');
-
-                // Losowa emotka
                 el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
 
-                // Ustawienie pozycji tam gdzie kliknąłeś + mały losowy rozrzut
                 const x = e.clientX + (Math.random() * 50 - 25);
                 const y = e.clientY + (Math.random() * 50 - 25);
 
                 el.style.left = x + 'px';
                 el.style.top = y + 'px';
-
                 document.body.appendChild(el);
-
-                // Usuń element z pamięci po zakończeniu animacji (1 sekunda)
-                setTimeout(() => {
-                    el.remove();
-                }, 1000);
+                setTimeout(() => el.remove(), 1000);
             }
         });
     </script>
-
 </body>
 </html>
