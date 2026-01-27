@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coinplex - Multi Theme</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         /* --- STYLE WSPÓLNE --- */
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            transition: background 0.5s;
+            transition: background 0.3s;
         }
 
         /* Przycisk zmiany motywu (Zawsze widoczny) */
@@ -29,6 +30,7 @@
             font-family: sans-serif;
             backdrop-filter: blur(5px);
             transition: 0.3s;
+            user-select: none;
         }
 
             #theme-toggle:hover {
@@ -36,13 +38,15 @@
                 color: black;
             }
 
-        /* Ukrywanie widoków */
+        /* Klasa do ukrywania widoków */
         .hidden {
             display: none !important;
         }
 
-        /* --- MOTYW 1: MATRIX (Cyberpunk) --- */
-        body.matrix-mode {
+        /* =========================================
+           MOTYW 1: MATRIX (Cyberpunk)
+           ========================================= */
+        body.mode-matrix {
             background-color: #000;
             font-family: 'Courier New', Courier, monospace;
             color: #0F0;
@@ -69,6 +73,7 @@
             border-bottom: 1px solid #0F0;
             display: flex;
             justify-content: space-between;
+            box-sizing: border-box;
         }
 
         .matrix-container {
@@ -99,8 +104,10 @@
                 box-shadow: 0 0 30px #0F0;
             }
 
-        /* --- MOTYW 2: MEME (Śmieszny) --- */
-        body.meme-mode {
+        /* =========================================
+           MOTYW 2: MEME (Śmieszny)
+           ========================================= */
+        body.mode-meme {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
             background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
             background-size: 400%;
@@ -136,13 +143,6 @@
             position: relative;
         }
 
-        .meme-title {
-            font-size: 50px;
-            color: #ff00c8;
-            text-shadow: 2px 2px 0px #000;
-            transform: rotate(-3deg);
-        }
-
         .btn-meme {
             display: inline-block;
             background-color: #00ff00;
@@ -168,48 +168,11 @@
                 transform: translate(1px, 1px) rotate(0deg);
             }
 
-            10% {
-                transform: translate(-1px, -2px) rotate(-1deg);
-            }
-
-            20% {
-                transform: translate(-3px, 0px) rotate(1deg);
-            }
-
-            30% {
-                transform: translate(3px, 2px) rotate(0deg);
-            }
-
-            40% {
-                transform: translate(1px, -1px) rotate(1deg);
-            }
-
-            50% {
-                transform: translate(-1px, 2px) rotate(-1deg);
-            }
-
-            60% {
-                transform: translate(-3px, 1px) rotate(0deg);
-            }
-
-            70% {
-                transform: translate(3px, 1px) rotate(-1deg);
-            }
-
-            80% {
-                transform: translate(-1px, -1px) rotate(1deg);
-            }
-
-            90% {
-                transform: translate(1px, 2px) rotate(0deg);
-            }
-
             100% {
                 transform: translate(1px, -2px) rotate(-1deg);
             }
         }
 
-        /* Latające emotki */
         .emoji {
             position: absolute;
             font-size: 30px;
@@ -229,87 +192,189 @@
                 opacity: 0;
             }
         }
+
+        /* =========================================
+           MOTYW 3: MINECRAFT (Survival)
+           ========================================= */
+        body.mode-minecraft {
+            /* Generowanie tekstury ziemi w CSS */
+            background-color: #4a331c;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            font-family: 'VT323', monospace; /* Pikselowa czcionka */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .mc-view {
+            text-align: center;
+            width: 600px;
+        }
+
+        .mc-title {
+            font-size: 80px;
+            color: #d1d1d1;
+            text-shadow: 4px 4px #3f3f3f;
+            margin-bottom: 10px;
+            margin-top: 0;
+            letter-spacing: 2px;
+        }
+
+        .mc-subtitle {
+            color: #FFFF55; /* Minecraft Yellow */
+            font-size: 30px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px #3f3f3f;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Styl przycisku a'la Minecraft */
+        .btn-mc {
+            display: block;
+            width: 80%;
+            margin: 0 auto 20px auto;
+            background-color: #777;
+            border: 2px solid #000;
+            /* Cieniowanie przycisku */
+            border-top-color: #aaa;
+            border-left-color: #aaa;
+            border-right-color: #555;
+            border-bottom-color: #555;
+            color: #fff;
+            padding: 15px;
+            font-size: 28px;
+            font-family: 'VT323', monospace;
+            text-decoration: none;
+            text-shadow: 2px 2px #222;
+            cursor: pointer;
+        }
+
+            .btn-mc:hover {
+                background-color: #5d6888; /* Niebieskawy podświetlony */
+                border-top-color: #7e87a3;
+                border-left-color: #7e87a3;
+            }
+
+            .btn-mc:active {
+                background-color: #444;
+                border-color: #222;
+            }
+
+        .mc-footer {
+            margin-top: 50px;
+            font-size: 20px;
+            color: #aaa;
+        }
     </style>
 </head>
-<body class="matrix-mode">
-    <button id="theme-toggle" onclick="switchTheme()">🔄 Zmień Motyw</button>
+<body class="mode-matrix">
+    <button id="theme-toggle" onclick="nextTheme()">🔄 Zmień Motyw</button>
 
     <canvas id="matrixCanvas"></canvas>
 
     <div id="view-matrix" class="matrix-view">
         <div class="matrix-header">
             <div class="logo">COINPLEX_TERMINAL</div>
-            <div>[SECURE_CONNECTION]</div>
+            <div>[SECURE]</div>
         </div>
         <div class="matrix-container">
             <h1>AGH Survival 1.22</h1>
             <p>> Inicjalizacja pobierania...</p>
             <a href="AGH survival 1.22.rar" class="btn-matrix" download>[ POBIERZ DANE ]</a>
             <br><br>
-            <small>STATUS: ONLINE | PING: 4ms</small>
+            <small>STATUS: ONLINE</small>
         </div>
     </div>
 
     <div id="view-meme" class="meme-view hidden">
-        <h1 class="meme-title">COINPLEX</h1>
+        <h1 style="font-size:50px; color:#ff00c8; text-shadow:2px 2px 0 #000; transform:rotate(-3deg)">COINPLEX</h1>
         <div style="background:yellow; display:inline-block; padding:5px; transform:rotate(2deg)">
             ✨ Much survival. Very rar. ✨
         </div>
         <p>🐕 WOW. Plik gotowy.</p>
-
         <a href="AGH survival 1.22.rar" class="btn-meme" download>👉 KLIKNIJ TU 👈</a>
+    </div>
 
-        <div style="margin-top:20px; font-size:12px;">
-            Format: .RAR (No virus)<br>
-            Status: 😎 LEGITNY
+    <div id="view-minecraft" class="mc-view hidden">
+        <h1 class="mc-title">MINECRAFT</h1>
+        <div class="mc-subtitle">AGH Survival Edition</div>
+
+        <a href="AGH survival 1.22.rar" class="btn-mc" download>Pobierz Świat</a>
+        <a href="#" class="btn-mc" onclick="alert('Opcje są zablokowane przez Administratora!')">Opcje...</a>
+
+        <div class="mc-footer">
+            Copyright Mojang AB. Do not distribute.
         </div>
     </div>
 
     <script>
         // --- LOGIKA PRZEŁĄCZANIA ---
         const body = document.body;
-        const viewMatrix = document.getElementById('view-matrix');
-        const viewMeme = document.getElementById('view-meme');
+        const views = [
+            document.getElementById('view-matrix'),
+            document.getElementById('view-meme'),
+            document.getElementById('view-minecraft')
+        ];
         const canvas = document.getElementById('matrixCanvas');
 
-        let isMatrix = true;
+        // 0 = Matrix, 1 = Meme, 2 = Minecraft
+        let currentTheme = 0;
 
-        function switchTheme() {
-            isMatrix = !isMatrix;
+        function nextTheme() {
+            // Ukryj obecny widok
+            views[currentTheme].classList.add('hidden');
 
-            if (isMatrix) {
-                // Włącz Matrix
-                body.className = 'matrix-mode';
-                viewMatrix.classList.remove('hidden');
-                viewMeme.classList.add('hidden');
+            // Zmień licznik (0 -> 1 -> 2 -> 0)
+            currentTheme = (currentTheme + 1) % 3;
+
+            // Pokaż nowy widok i ustaw klasę body
+            views[currentTheme].classList.remove('hidden');
+
+            if (currentTheme === 0) {
+                body.className = 'mode-matrix';
                 canvas.style.display = 'block';
-            } else {
-                // Włącz Memy
-                body.className = 'meme-mode';
-                viewMatrix.classList.add('hidden');
-                viewMeme.classList.remove('hidden');
+            } else if (currentTheme === 1) {
+                body.className = 'mode-meme';
+                canvas.style.display = 'none';
+            } else if (currentTheme === 2) {
+                body.className = 'mode-minecraft';
                 canvas.style.display = 'none';
             }
         }
 
-        // --- LOGIKA MATRIXA ---
+        // --- MATRIX LOGIC ---
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawMatrix() {
-            if (!isMatrix) return; // Nie rysuj jeśli motyw wyłączony (oszczędza baterię)
-
+            if (currentTheme !== 0) return; // Optymalizacja
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#0F0';
             ctx.font = fontSize + 'px monospace';
-
             for (let i = 0; i < drops.length; i++) {
                 const text = chars.charAt(Math.floor(Math.random() * chars.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -318,28 +383,21 @@
             }
         }
         setInterval(drawMatrix, 30);
-
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
 
-        // --- LOGIKA KLIKANIA (MEME) ---
+        // --- MEME CLICK LOGIC ---
         document.addEventListener('click', function (e) {
-            // Działa tylko w trybie MEME i jeśli nie kliknięto w przycisk zmiany
-            if (isMatrix || e.target.id === 'theme-toggle') return;
-
+            if (currentTheme !== 1 || e.target.id === 'theme-toggle') return;
             const emojis = ['🐕', '🚀', '💎', '🔥', '💀', '🤡', '🍌'];
             for (let i = 0; i < 5; i++) {
                 const el = document.createElement('div');
                 el.classList.add('emoji');
                 el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-
-                const x = e.clientX + (Math.random() * 50 - 25);
-                const y = e.clientY + (Math.random() * 50 - 25);
-
-                el.style.left = x + 'px';
-                el.style.top = y + 'px';
+                el.style.left = (e.clientX + (Math.random() * 50 - 25)) + 'px';
+                el.style.top = (e.clientY + (Math.random() * 50 - 25)) + 'px';
                 document.body.appendChild(el);
                 setTimeout(() => el.remove(), 1000);
             }
