@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinplex - Ultimate Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <title>Coinplex - 5 Themes</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* --- STYLE WSPÓLNE --- */
         body {
@@ -12,6 +12,7 @@
             padding: 0;
             overflow-x: hidden;
             transition: background 0.3s;
+            min-height: 100vh;
         }
 
         /* Przycisk zmiany motywu */
@@ -42,9 +43,7 @@
             display: none !important;
         }
 
-        /* =========================================
-           MOTYW 1: MATRIX
-           ========================================= */
+        /* ================= MOTYW 1: MATRIX ================= */
         body.mode-matrix {
             background-color: #000;
             font-family: 'Courier New', Courier, monospace;
@@ -92,9 +91,7 @@
                 box-shadow: 0 0 30px #0F0;
             }
 
-        /* =========================================
-           MOTYW 2: MEME
-           ========================================= */
+        /* ================= MOTYW 2: MEME ================= */
         body.mode-meme {
             font-family: 'Comic Sans MS', 'Comic Sans', cursive;
             background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
@@ -103,7 +100,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         @keyframes rainbow {
@@ -167,9 +163,7 @@
             }
         }
 
-        /* =========================================
-           MOTYW 3: MINECRAFT
-           ========================================= */
+        /* ================= MOTYW 3: MINECRAFT ================= */
         body.mode-minecraft {
             background-color: #4a331c;
             background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
@@ -178,7 +172,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             color: #fff;
         }
 
@@ -219,9 +212,7 @@
                 border-left-color: #7e87a3;
             }
 
-        /* =========================================
-           MOTYW 4: AGH USOS / DZIEKANAT
-           ========================================= */
+        /* ================= MOTYW 4: AGH USOS ================= */
         body.mode-agh {
             background-color: #f0f2f5;
             font-family: Arial, sans-serif;
@@ -233,7 +224,7 @@
 
         .agh-header-bar {
             width: 100%;
-            background-color: #00693c; /* AGH Green */
+            background-color: #00693c;
             color: white;
             padding: 15px 0;
             text-align: center;
@@ -298,6 +289,168 @@
             .btn-agh:hover {
                 background-color: #004d2c;
             }
+
+        /* ================= MOTYW 5: AI ASSISTANT (NOWY!) ================= */
+        body.mode-ai {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            /* Subtelna animacja tła */
+        }
+            /* Efekt oddychającego tła */
+            body.mode-ai::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 80%;
+                height: 80%;
+                background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 60%);
+                transform: translate(-50%, -50%);
+                animation: pulseAI 6s ease-in-out infinite;
+                z-index: -1;
+            }
+
+        @keyframes pulseAI {
+            0%, 100% {
+                opacity: 0.5;
+                scale: 1;
+            }
+
+            50% {
+                opacity: 1;
+                scale: 1.1;
+            }
+        }
+
+        .ai-view {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            border-radius: 50%;
+            margin-right: 15px;
+            position: relative;
+        }
+
+            .ai-avatar::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 2px solid #00d2ff;
+                animation: ping 1.5s infinite;
+            }
+
+        @keyframes ping {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .chat-bubble {
+            padding: 12px 18px;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            max-width: 80%;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .chat-user {
+            background: rgba(255, 255, 255, 0.1);
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-ai {
+            background: linear-gradient(90deg, rgba(0, 210, 255, 0.2), rgba(58, 123, 213, 0.2));
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-bottom-left-radius: 4px;
+        }
+
+        /* Animacja pisania */
+        .typing-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #00d2ff;
+            border-radius: 50%;
+            margin: 0 2px;
+            opacity: 0.4;
+            animation: typing 1s infinite;
+        }
+
+            .typing-dots span:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .typing-dots span:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+        .btn-ai-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn-ai {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+            .btn-ai:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 0 30px rgba(0, 210, 255, 0.7);
+            }
     </style>
 </head>
 <body class="mode-matrix">
@@ -336,31 +489,39 @@
         <div style="padding: 20px;">
             <div class="agh-card">
                 <div class="agh-title">Karta przedmiotu: SURVIVAL 1.22</div>
-
-                <div class="agh-info-row">
-                    <strong>Status studenta:</strong>
-                    <span style="color:green">Aktywny (Warunkowo)</span>
-                </div>
-                <div class="agh-info-row">
-                    <strong>Punkty ECTS:</strong>
-                    <span style="color:red">-12 (Deficyt)</span>
-                </div>
-                <div class="agh-info-row">
-                    <strong>Prowadzący:</strong>
-                    <span>mgr inż. Coinplex</span>
-                </div>
-
                 <div class="agh-alert">
-                    ⚠️ <strong>UWAGA:</strong> Termin pobrania pliku mija wczoraj. Proszę niezwłocznie uzupełnić braki w oprogramowaniu.
+                    ⚠️ <strong>UWAGA:</strong> Wykryto krytyczny deficyt punktów ECTS. Wymagana natychmiastowa interwencja.
                 </div>
-
                 <a href="AGH survival 1.22.rar" class="btn-agh" download>Złóż wniosek o pobranie pliku (.RAR)</a>
             </div>
-            <div style="text-align:center; margin-top:10px; font-size:12px; color:#777;">
-                System wygenerowany automatycznie. Dziekanat czynny: wtorek 11:00 - 11:15.
-            </div>
+            <div style="text-align:center; margin-top:10px; font-size:12px; color:#777;">System wygenerowany automatycznie.</div>
         </div>
     </div>
+
+    <div id="view-ai" class="ai-view hidden">
+        <div class="ai-header">
+            <div class="ai-avatar"></div>
+            <div style="font-weight: 700; font-size: 18px;">Coinplex AI Core</div>
+        </div>
+
+        <div class="chat-bubble chat-user">
+            Potrzebuję zasobów do przetrwania sesji na AGH. Wersja 1.22.
+        </div>
+
+        <div class="chat-bubble chat-ai" style="display: flex; align-items: center;">
+            <div class="typing-dots"><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="chat-bubble chat-ai">
+            Analiza zakończona. Zlokalizowano pakiet danych "AGH Survival 1.22".<br>
+            Prawdopodobieństwo zaliczenia wzrosło o 0.04%. Przygotowano bezpieczny transfer.
+        </div>
+
+        <div class="btn-ai-container">
+            <a href="AGH survival 1.22.rar" class="btn-ai" download>INICJUJ TRANSFER DANYCH</a>
+        </div>
+    </div>
+
 
     <script>
         // --- LOGIKA PRZEŁĄCZANIA ---
@@ -369,50 +530,47 @@
             document.getElementById('view-matrix'),
             document.getElementById('view-meme'),
             document.getElementById('view-minecraft'),
-            document.getElementById('view-agh')
+            document.getElementById('view-agh'),
+            document.getElementById('view-ai')
         ];
         const canvas = document.getElementById('matrixCanvas');
 
-        let currentTheme = 0; // 0=Matrix, 1=Meme, 2=Minecraft, 3=AGH
+        let currentTheme = 0; // 0=Matrix, 1=Meme, 2=Minecraft, 3=AGH, 4=AI
 
         function nextTheme() {
             views[currentTheme].classList.add('hidden');
-            currentTheme = (currentTheme + 1) % 4; // Teraz modulo 4, bo 4 motywy
+            currentTheme = (currentTheme + 1) % 5; // Modulo 5, bo 5 motywów
             views[currentTheme].classList.remove('hidden');
 
-            // Reset klas body
-            body.className = '';
+            body.className = ''; // Reset klas
+            canvas.style.display = 'none'; // Domyślnie ukryj canvas
 
             if (currentTheme === 0) {
                 body.classList.add('mode-matrix');
                 canvas.style.display = 'block';
             } else if (currentTheme === 1) {
                 body.classList.add('mode-meme');
-                canvas.style.display = 'none';
             } else if (currentTheme === 2) {
                 body.classList.add('mode-minecraft');
-                canvas.style.display = 'none';
             } else if (currentTheme === 3) {
                 body.classList.add('mode-agh');
-                canvas.style.display = 'none';
+            } else if (currentTheme === 4) {
+                body.classList.add('mode-ai');
             }
         }
 
         // --- MATRIX LOGIC ---
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const chars = '01AGH'; // Zmieniłem znaki na AGH dla klimatu
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const chars = '01AGH_AI_DATA';
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawMatrix() {
             if (currentTheme !== 0) return;
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#0F0';
-            ctx.font = fontSize + 'px monospace';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0'; ctx.font = fontSize + 'px monospace';
             for (let i = 0; i < drops.length; i++) {
                 const text = chars.charAt(Math.floor(Math.random() * chars.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -426,15 +584,13 @@
         // --- MEME CLICK LOGIC ---
         document.addEventListener('click', function (e) {
             if (currentTheme !== 1 || e.target.id === 'theme-toggle') return;
-            const emojis = ['🐕', '🚀', '💎', '🔥', '💀', '🤡', '🍌'];
+            const emojis = ['🐕', '🚀', '💎', '🤖', '💾', '🧠'];
             for (let i = 0; i < 5; i++) {
-                const el = document.createElement('div');
-                el.classList.add('emoji');
+                const el = document.createElement('div'); el.classList.add('emoji');
                 el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 el.style.left = (e.clientX + (Math.random() * 50 - 25)) + 'px';
                 el.style.top = (e.clientY + (Math.random() * 50 - 25)) + 'px';
-                document.body.appendChild(el);
-                setTimeout(() => el.remove(), 1000);
+                document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
             }
         });
     </script>
